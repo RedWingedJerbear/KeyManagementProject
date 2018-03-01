@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Date Select -->
+
+<ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="myDate"></ion-datetime>
+</ion-item>
+  <br>
+
+  <!-- Drop down menu -->
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Select
+    </div>
+
+    <select>
+      <option>Computer Science</option>
+      <option selected>Chemistry</option>
+      <option>Mathematics</option>
+      <option selected>English</option>
+      <option selected>Psychology</option>
+      <option selected>Education</option>
+    </select>
+  </label>
+  <br>
+
+  <!-- Simple input form -->
+  <div class="list">
+    <label class="item item-input">
+      <p>Requster Email</p>
+      <input type="text" placeholder="" />
+    </label>
+    <br>
+    <label class="item item-input">
+      <p>Location of key(s) needed - building and room numbers</p>
+      <input type="text" placeholder="" />
+    </label>
+    <br>
+    <label class="item item-input">
+      <p>Name of requester</p>
+      <input type="text" placeholder="" />
+    </label>
+    <br>
+    <label class="item item-input">
+      <p>919# of requester</p>
+      <input type="text" placeholder="" />
+    </label>
+    <br>
+    <label class="item item-input">
+      <p>Phone Number</p>
+      <input type="text" placeholder="" />
+    </label>
+    <br>
+    <label class="item item-input">
+      <p>Location of key(s) needed - building and room numbers</p>
+      <input type="text" placeholder="" />
+    </label>
+
+
+  </div>
+  <br>
+  <br>
+
+
+
+
+
+
+
+
+
+
+</ion-content>

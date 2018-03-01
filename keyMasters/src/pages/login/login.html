@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar class="header">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<br><br><br><br>
+<ion-card class="card">
+  <ion-item class="inputItem row" style="background-color: rgba(0, 0, 0, 0);">
+    <ion-input type="text" placeholder="Username"></ion-input>
+  </ion-item>
+
+  <ion-item class="inputItem row" style="background-color: rgba(0, 0, 0, 0);">
+    <ion-input type="password" placeholder="Password"  (keydown)="loginEnter($event)"></ion-input>
+    
+  </ion-item>
+  
+
+
+<div style="text-align: center">
+  <button class="loginBtn" ion-button round (click)="goToHome()">Login</button>
+</div>
+
+</ion-card>
+
+</ion-content>
