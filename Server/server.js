@@ -1,9 +1,9 @@
 // Set up
 var config = require('./config.js'),
     express  = require('express'),
-    app      = express(),                  // create our app w/ express
-    mongoose = require('mongoose'),                     // mongoose for mongodb
-    bodyParser = require('body-parser'),    // pull information from HTML POST (express4)
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser'), // pull information from HTML POST (express4)
+    app      = express(),                  // create our app w/ express]
     apiRouter = express.Router(),
     connection = mongoose.connect(config.database, {useMongoClient: true}),
     keyrequests = require('./models/keyrequests');
@@ -17,10 +17,16 @@ app.listen(config.port);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(function(req, res, next) {
+app.use(function(req, res, next)
+{
+    /* Allow access from any requesting client */
     res.setHeader('Access-Control-Allow-Origin', '*');
+
+    /* Allow access for any of the following Http request types */
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization');
+
+    /* Set the Http request header */
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
     next();
 });
 
