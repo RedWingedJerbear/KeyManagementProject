@@ -75,7 +75,7 @@ export class AddRequestPage {
       options :any = {department : department, email : email, name : name, id : id, number : number, keys : keys},
       url :any = this._HOST + "api/home";
 
-    if (!this.navParams.get("record"))
+    if (this.navParams.get("record"))
     {
 
     }
@@ -91,7 +91,7 @@ export class AddRequestPage {
     }
       this._HTTP.post(url, options, headers).subscribe((data: any) => {
           this.clearForm();
-          this.displayNotification(name + ' your key request was successfully submitted')
+          this.displayNotification(name + ' your key request was successfully submitted');
         },
         (error: any) => {
           console.dir(error);
