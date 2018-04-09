@@ -1,5 +1,6 @@
 // Set up
-var config = require('./config.js'),
+var cors = require('cors');
+    config = require('./config.js'),
     express  = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'), // pull information from HTML POST (express4)
@@ -11,7 +12,7 @@ var config = require('./config.js'),
 
 
 //Configuration
-
+app.use(cors())
 app.use('/api', apiRouter);
 app.listen(config.port);
 app.use(bodyParser.json());
@@ -20,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(function(req, res, next)
 {
     /* Allow access from any requesting client */
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100/#/add-request');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     /* Allow access for any of the following Http request types */
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
@@ -103,4 +104,4 @@ apiRouter.delete('/requests/:recordID', function (req, res) {
         res.json({records: recs});
     });
 });
-console.log("App listening on port 8080");
+console.log("App listening on port 8090");
