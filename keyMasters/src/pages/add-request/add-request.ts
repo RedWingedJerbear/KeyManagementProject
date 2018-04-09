@@ -75,22 +75,27 @@ export class AddRequestPage {
       options :any = {department : department, email : email, name : name, id : id, number : number, keys : keys},
       url :any = this._HOST + "api/home";
 
-    if(this.navParams.get("record")){
+    if (!this.navParams.get("record"))
+    {
 
     }
     else {
-      this._HTTP
-        .post(url, options, headers)
-        .subscribe((data : any) =>
-          {
-            this.clearForm();
-            this.displayNotification(name + ' your key request was successfully submitted')
-          },
-          (error :any) =>
-          {
-            console.dir(error);
-          });
+      this._HTTP.post(url, options, headers).subscribe((data: any) => {
+        console.log("Got data", data);
+        this.clearForm();
+        this.displayNotification(name + ' your key request was successfully submitted');
+        },
+        (error: any) => {
+          console.dir(error);
+        });
     }
+      this._HTTP.post(url, options, headers).subscribe((data: any) => {
+          this.clearForm();
+          this.displayNotification(name + ' your key request was successfully submitted')
+        },
+        (error: any) => {
+          console.dir(error);
+        });
   }
 
   clearForm() : void
