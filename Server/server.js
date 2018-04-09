@@ -3,26 +3,30 @@ var express  = require('express');
 var app      = express();                               // create our app w/ express
 var mongoose = require('mongoose');                     // mongoose for mongodb
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
+var cors =require('cors');
 apiRouter = express.Router();
+path = require('path');
 keyrequests = require('./models/keyrequests');
+config = require('./config.js');
 
 
 //Configuration
 mongoose.connect(config.database, {useMongoClient: true});
-app.use('/api, apiRouter');
+app.use('/api', apiRouter);
 app.listen(config.port);
-app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Authorization");
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
     next();
 });
 
 //API routes
-apiRouter.get('/keyrequests', function (req, res) {
+apiRouter.get('/requests', function (req, res) {
     keyrequests.find({completed:false}, function(err, recs)
     {
         if(err){
@@ -58,16 +62,17 @@ apiRouter.post('/home', function (req, res) {
         }
      res.json({message: 'success'});
     });
+    console.log('Request Received');
 });
 
-apiRouter.put('/keyrequests/:recordID', function(req, res) {
+apiRouter.put('/requests/:recordID', function(req, res) {
     keyrequests.findByID({_id: req.params.recordID}, function (err, recs) {
         if(err){
             console.dir(err);
         }
         else{
             request_date = req.body.date || recs.request_date;
-            request_department = req.body.department || recs.request_department;
+            request_department = req.body.department || recs.department;
             request_email = req.body.email || recs.request_email;
             request_name = req.body.name || recs.request_name;
             request_919 = req.body.id || recs.request_919;
@@ -85,7 +90,7 @@ apiRouter.put('/keyrequests/:recordID', function(req, res) {
     });
 });
 
-apiRouter.delete('/keyrequests/:recordID', function (req, res) {
+apiRouter.delete('/requests/:recordID', function (req, res) {
     keyrequests.findByIdAndRemove({_id: req.params.recordID}, function (err, recs) {
         if(err){
             console.dir(err);

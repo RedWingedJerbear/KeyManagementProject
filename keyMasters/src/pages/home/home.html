@@ -9,78 +9,75 @@
 
 <ion-content padding>
 
-  <!-- Date Select -->
-
-<ion-item>
-  <ion-label>Date</ion-label>
-  <ion-datetime displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="myDate"></ion-datetime>
-</ion-item>
-  <br>
-
-  <!-- Drop down menu -->
-
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Select
-    </div>
-
-    <select>
-      <option>Computer Science</option>
-      <option selected>Chemistry</option>
-      <option>Mathematics</option>
-      <option selected>English</option>
-      <option selected>Psychology</option>
-      <option selected>Education</option>
-    </select>
-  </label>
-  <br>
-
   <!-- Simple input form -->
-  <div class="list">
-    <label class="item item-input">
-      <p>Requster Email</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
-    <label class="item item-input">
-      <p>Location of key(s) needed - building and room numbers</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
-    <label class="item item-input">
-      <p>Name of requester</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
-    <label class="item item-input">
-      <p>919# of requester</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
-    <label class="item item-input">
-      <p>Phone Number</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
-    <label class="item item-input">
-      <p>Location of key(s) needed - building and room numbers</p>
-      <input type="text" placeholder="" />
-    </label>
-    <br>
+  <form
+    [formGroup] = "form"
+    (ngSubmit) = "addRecord()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input
+          type= "text"
+        [(ngModel)]= "name"
+        formControlName="name">
+        </ion-input>
+      </ion-item>
 
-    <button ion-button round color = "secondary">Submit Request</button>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input
+          type= "text"
+          [(ngModel)]= "email"
+          formControlName="email">
+        </ion-input>
+      </ion-item>
 
-  </div>
-  <br>
-  <br>
+      <ion-item>
+        <ion-label>919:</ion-label>
+        <ion-input
+          type= "text"
+          [(ngModel)]= "id"
+          formControlName="id">
+        </ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>Phone Number</ion-label>
+        <ion-input
+          type= "text"
+          [(ngModel)]= "number"
+          formControlName="number">
+        </ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>Location of key(s) needed - building and room numbers: </ion-label>
+        <ion-input
+          type= "text"
+          [(ngModel)]= "keys"
+          formControlName="keys">
+        </ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>Department</ion-label>
+        <ion-select
+          type="text"
+          [(ngModel)]="department"
+          formControlName="department">
+          <ion-option value="Computer Science">Computer Science</ion-option>
+          <ion-option value="Chemistry">Chemistry</ion-option>
+          <ion-option value="Education">Education</ion-option>
+          <ion-option value="English">English</ion-option>
+          <ion-option value="Mathematics">Mathematics</ion-option>
+          <ion-option value="Psychology">Psychology</ion-option>
+        </ion-select>
+      </ion-item>
 
-
-
-
-
-
-
+      <button
+        ion-button round
+        color = "secondary"
+        block [disabled]="!form.valid">Submit Request</button>
+    </ion-list>
+  </form>
 </ion-content>

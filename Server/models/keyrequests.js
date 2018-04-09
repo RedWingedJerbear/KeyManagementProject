@@ -3,14 +3,14 @@ var mongoose = require('mongoose');
 Schema = mongoose.Schema;
 
 KeyRequestsSchema = new Schema({
-        request_date : {type : date, default: date.now},
-        request_department : string,
-        request_email : string,
-        request_name : string,
-        request_919 : string,
-        request_number : string,
-        request_keys : string,
-        request_authorized : boolean
+        request_date : {type : Date, default: Date.now},
+        request_department : String,
+        request_email : String,
+        request_name : String,
+        request_919 : String,
+        request_number : String,
+        request_keys : [String],
+        request_authorized : Boolean
 });
 
 module.exports = mongoose.model('KeyRequests', KeyRequestsSchema);
