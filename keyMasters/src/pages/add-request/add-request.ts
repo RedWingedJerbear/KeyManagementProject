@@ -28,7 +28,7 @@ export class AddRequestPage {
   public authorized : any;
   private _ID : String;
   public pageTitle : string;
-  private _HOST : string = "http:// 192.168.1.177:8080/";
+  private _HOST : string = "http://localhost:8080/";
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -80,6 +80,7 @@ export class AddRequestPage {
 
     }
     else {
+      console.log(options);
       this._HTTP.post(url, options, headers).subscribe((data: any) => {
         console.log("Got data", data);
         this.clearForm();
