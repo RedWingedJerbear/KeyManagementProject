@@ -65,15 +65,15 @@ export class AddRequestPage {
   }
   manageRequests(): void
   {
-    let department :any = this.form.controls['department'].value,
-      email :any = this.form.controls['email'].value,
-      name :any = this.form.controls['name'].value,
-      id :any = this.form.controls['id'].value,
-      number :any = this.form.controls['number'].value,
-      keys :any = this.form.controls['keys'].value,
+    let department : any = this.form.controls['department'].value,
+      email : any = this.form.controls['email'].value,
+      name : any = this.form.controls['name'].value,
+      id : any = this.form.controls['id'].value,
+      number : any = this.form.controls['number'].value,
+      keys : any = this.form.controls['keys'].value,
       headers :any = new HttpHeaders({'Content-Type' : 'application/json'}),
-      options :any = {department : department, email : email, name : name, id : id, number : number, keys : keys},
-      url :any = this._HOST + "api/home";
+      options : any = { department : department, email : email, name : name, id : id, number : number, keys : keys },
+      url : any = this._HOST + "api/home";
 
     if (this.navParams.get("record"))
     {
@@ -89,13 +89,6 @@ export class AddRequestPage {
           console.dir(error);
         });
     }
-      this._HTTP.post(url, options, headers).subscribe((data: any) => {
-          this.clearForm();
-          this.displayNotification(name + ' your key request was successfully submitted');
-        },
-        (error: any) => {
-          console.dir(error);
-        });
   }
 
   clearForm() : void

@@ -20,8 +20,8 @@
       <ion-item>
         <ion-label>Name:</ion-label>
         <ion-input
-          type= "text"
-          [(ngModel)]= "name"
+          type="text"
+          [(ngModel)]="name"
           formControlName="name">
         </ion-input>
       </ion-item>
@@ -65,7 +65,6 @@
       <ion-item>
         <ion-label>Department</ion-label>
         <ion-select
-          type="text"
           [(ngModel)]="department"
           formControlName="department">
           <ion-option value="Computer Science">Computer Science</ion-option>
@@ -78,7 +77,7 @@
       </ion-item>
 
       <button
-        ion-button round
+        ion-button
         color="secondary"
         block [disabled]="!form.valid">Submit Request</button>
     </ion-list>

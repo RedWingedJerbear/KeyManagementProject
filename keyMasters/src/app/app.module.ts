@@ -12,7 +12,7 @@ import { LoginPage } from '../pages/login/login';
   declarations: [
     MyApp,
     LoginPage,
-    HomePage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,6 @@ import { LoginPage } from '../pages/login/login';
     MyApp,
     LoginPage,
     HomePage,
-    //RequestsPage
   ],
   providers: [
     StatusBar,
