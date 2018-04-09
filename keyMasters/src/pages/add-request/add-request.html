@@ -1,0 +1,86 @@
+<!--
+  Generated template for the AddRequestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{pageTitle}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>{{pageTitle}} this request</p>
+  <!-- Simple input form -->
+  <form
+    [formGroup]="form"
+    (ngSubmit)="manageRequests()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input
+          type= "text"
+          [(ngModel)]= "name"
+          formControlName="name">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="email"
+          formControlName="email">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>919:</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="id"
+          formControlName="id">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Phone Number</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="number"
+          formControlName="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Location of key(s) needed - building and room numbers: </ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="keys"
+          formControlName="keys">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Department</ion-label>
+        <ion-select
+          type="text"
+          [(ngModel)]="department"
+          formControlName="department">
+          <ion-option value="Computer Science">Computer Science</ion-option>
+          <ion-option value="Chemistry">Chemistry</ion-option>
+          <ion-option value="Education">Education</ion-option>
+          <ion-option value="English">English</ion-option>
+          <ion-option value="Mathematics">Mathematics</ion-option>
+          <ion-option value="Psychology">Psychology</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <button
+        ion-button round
+        color="secondary"
+        block [disabled]="!form.valid">Submit Request</button>
+    </ion-list>
+  </form>
+</ion-content>
