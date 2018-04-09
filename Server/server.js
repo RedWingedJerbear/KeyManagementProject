@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(function(req, res, next)
 {
     /* Allow access from any requesting client */
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100/#/add-request');
 
     /* Allow access for any of the following Http request types */
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');

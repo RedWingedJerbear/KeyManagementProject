@@ -1,3 +1,4 @@
+///<reference path="../../node_modules/@angular/common/http/src/module.d.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
