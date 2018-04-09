@@ -12,11 +12,12 @@ var cors = require('cors');
 
 
 //Configuration
-app.use(cors())
+
+app.use(cors());
 app.use('/api', apiRouter);
 app.listen(config.port);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 
 app.use(function(req, res, next)
 {
@@ -43,14 +44,15 @@ apiRouter.get('/requests', function (req, res) {
 });
 
 apiRouter.post('/home', function (req, res) {
+    console.log(req);
     var department =  req.body.department,
-    email = req.body.email,
-    name = req.body.name,
-    id = req.body.id,
-    number = req.body.number,
-    keys = req.body.keys,
-    authorized = false,
-    date = Date.now();
+        email = req.body.email,
+        name = req.body.name,
+        id = req.body.id,
+        number = req.body.number,
+        keys = req.body.keys,
+        authorized = false,
+        date = Date.now();
 
     keyrequests.create({
         request_date : date,
@@ -104,4 +106,4 @@ apiRouter.delete('/requests/:recordID', function (req, res) {
         res.json({records: recs});
     });
 });
-console.log("App listening on port 8090");
+console.log("App listening on port 8080");
