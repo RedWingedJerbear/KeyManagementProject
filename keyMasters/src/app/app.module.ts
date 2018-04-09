@@ -7,14 +7,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import {RequestsPage} from "../pages/requests/requests";
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
     HomePage,
-    //RequestsPage
   ],
   imports: [
     BrowserModule,
