@@ -81,7 +81,7 @@ export class AddRequestPage {
     }
     else {
       console.log(options);
-      this._HTTP.post(url, options, headers).subscribe((data: any) => {
+      this._HTTP.post(url, JSON.stringify(options), headers).subscribe((data: any) => {
         console.log("Got data", data);
         this.clearForm();
         this.displayNotification(name + ' your key request was successfully submitted');
