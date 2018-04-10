@@ -71,8 +71,8 @@ export class AddRequestPage {
       id : any = this.form.controls['id'].value,
       number : any = this.form.controls['number'].value,
       keys : any = this.form.controls['keys'].value,
-      headers :any = new HttpHeaders({'Content-Type':'application/json'}),
-      options : any = { department:department, email:email, name:name, id:id, number:number, keys:keys},
+      headers :any = new HttpHeaders({"Content-Type":"application/json"}),
+      options : any = { department  : department, email : email, name : name, id : id, number : number, keys : keys},
       url : any = this._HOST + "api/home";
 
     if (this.navParams.get("record"))
@@ -80,8 +80,7 @@ export class AddRequestPage {
 
     }
     else {
-      console.log(options);
-      this._HTTP.post(url, JSON.stringify(options), headers).subscribe((data: any) => {
+      this._HTTP.post(url, options, headers).subscribe((data: any) => {
         console.log("Got data", data);
         this.clearForm();
         this.displayNotification(name + ' your key request was successfully submitted');

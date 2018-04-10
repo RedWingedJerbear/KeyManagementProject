@@ -14,5 +14,19 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-buttons>
+    <button ion-button
+            block
+            color="secondary"
+            (click)="retrieveRecords()">Get Key Request Records</button>
+  </ion-buttons>
+  <ion-list>
+    <ion-item
+      *ngFor="let item of items">
+      <ion-icon name="key" item-start></ion-icon>
+      <h2>{{item.request_name}}</h2>
+      <p>{{item.request_email}}</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

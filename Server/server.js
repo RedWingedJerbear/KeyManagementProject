@@ -1,5 +1,5 @@
 // Set up
-var cors = require('cors');
+var //cors = require('cors');
     config = require('./config.js'),
     express  = require('express'),
     mongoose = require('mongoose'),
@@ -12,16 +12,26 @@ var cors = require('cors');
 
 
 //Configuration
+app.use(function(req, res, next)
+{
+    /* Allow access from any requesting client */
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
-app.use(cors());
+    /* Allow access for any of the following Http request types */
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
+
+    /* Set the Http request header */
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept');
+    next();
+});
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use('/api', apiRouter);
-app.listen(config.port);
-app.use(bodyParser.json({limit: '10mb'}));
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 
 //API routes
 apiRouter.get('/requests', function (req, res) {
-    keyrequests.find({completed:false}, function(err, recs)
+    console.log("Getting Requests");
+    keyrequests.find({}, function(err, recs)
     {
         if(err){
             console.dir(err);
@@ -31,7 +41,7 @@ apiRouter.get('/requests', function (req, res) {
 });
 
 apiRouter.post('/home', function (req, res) {
-    console.log(req)
+    console.log(req.body);
     var department =  req.body.department,
         email = req.body.email,
         name = req.body.name,
@@ -50,7 +60,7 @@ apiRouter.post('/home', function (req, res) {
         request_number : number,
         request_keys : keys,
         request_authorized : authorized},
-    function(err, small) {
+    function(err, keyrequest) {
         if(err){
             console.dir(err);
         }
@@ -93,4 +103,5 @@ apiRouter.delete('/requests/:recordID', function (req, res) {
         res.json({records: recs});
     });
 });
+app.listen(config.port);
 console.log("App listening on port 8080");
