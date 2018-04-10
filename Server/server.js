@@ -6,6 +6,7 @@ var //cors = require('cors');
     bodyParser = require('body-parser'), // pull information from HTML POST (express4)
     app      = express(),                  // create our app w/ express]
     apiRouter = express.Router(),
+    promise =mongoose.Promise = global.Promise,
     connection = mongoose.connect(config.database, {useMongoClient: true}),
     keyrequests = require('./models/keyrequests');
 
@@ -70,32 +71,33 @@ apiRouter.post('/home', function (req, res) {
 });
 
 apiRouter.put('/requests/:recordID', function(req, res) {
-    keyrequests.findByID({_id: req.params.recordID}, function(err, recs)
+    keyrequests.findById({_id: req.params.recordID}, function(err, keyrequest)
     {
         if(err){
             console.dir(err);
         }
         else{
-            recs.date = req.body.date || recs.request_date;
-            recs.department = req.body.department || recs.department;
-            recs.email = req.body.email || recs.email;
-            recs.name = req.body.name || recs.name;
-            recs.id = req.body.id || recs.id;
-            recs.number = req.body.number || recs.number;
-            recs.keys = req.body.keys || recs.keys;
-            recs.authorized = req.body.authorized || recs.authorized;
+            keyrequest.date = keyrequest.request_date;
+            keyrequest.department = req.body.department || keyrequest.request_department;
+            keyrequest.email = req.body.email || keyrequest.request_email;
+            keyrequest.name = req.body.name || keyrequest.request_name;
+            keyrequest.id = req.body.id || keyrequest.request_id;
+            keyrequest.number = req.body.number || keyrequest.request_number;
+            keyrequest.keys = req.body.keys || keyrequest.request_keys;
+            keyrequest.authorized = req.body.authorized || keyrequest.request_authorized;
 
-            recs.save(function(err,recs){
+            keyrequest.save(function(err,updatedKeyRequest){
                 if(err){
                     res.status(500).send(err)
                 }
-                res.json({records: recs});
+                res.json({records: updatedKeyRequest});
             });
         }
     });
+    console.log('Updated');
 });
 
-apiRouter.delete('/requests/:recordID', function (req, res) {
+apiRouter.delete('/delete/:recordID', function (req, res) {
     keyrequests.findByIdAndRemove({_id: req.params.recordID}, function (err, recs) {
         if(err){
             console.dir(err);

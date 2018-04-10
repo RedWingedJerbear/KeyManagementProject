@@ -16,9 +16,9 @@
 <ion-content padding>
   <ion-buttons>
     <button ion-button
-            block
+            round
             color="secondary"
-            (click)="retrieveRecords()">Get Key Request Records</button>
+            (click)="retrieveRecord()">Get Key Request Records</button>
   </ion-buttons>
   <ion-list>
     <ion-item
@@ -26,6 +26,14 @@
       <ion-icon name="key" item-start></ion-icon>
       <h2>{{item.request_name}}</h2>
       <p>{{item.request_email}}</p>
+      <ion-buttons end>
+        <button ion-button
+                color="secondary"
+                (click)="updateRecord(item)">Update</button>
+        <button ion-button
+                color="danger"
+                (click)="deleteRecord(item)">Delete</button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 

@@ -13,7 +13,7 @@ export class HomePage {
 
   constructor
   (public navCtrl : NavController,
-  //private _TOAST : ToastController
+   private _TOAST : ToastController,
    private _HTTP : HttpClient) {
 
   }
@@ -23,7 +23,7 @@ export class HomePage {
     this.navCtrl.push('request');
   }
 
-  retrieveRecords() : void
+  retrieveRecord() : void
   {
     console.log("getting requests");
     this._HTTP.get(this._HOST + "api/requests").subscribe((data:any) =>{
@@ -32,5 +32,30 @@ export class HomePage {
       (error : any) =>{
       console.dir(error);
       });
+  }
+
+  updateRecord(item : any) : void{
+    this.navCtrl.push('request', {record : item});
+  }
+
+  deleteRecord(item : any) : void
+  {
+    let recordID : string = item._id,
+        url : any = this._HOST + "api/delete/" + recordID;
+    this._HTTP.delete(url).subscribe((data : any) =>{
+      this.retrieveRecord();
+      this.displayNotification(data.records.request_name + ' was successfully deleted')
+    },
+      (error : any) =>{
+      console.dir(error);
+      });
+  }
+  displayNotification(message : string) : void
+  {
+    let toast = this._TOAST.create({
+      message 	: message,
+      duration 	: 3000
+    });
+    toast.present();
   }
 }

@@ -50,12 +50,12 @@ export class AddRequestPage {
     if(this.navParams.get("record"))
     {
       this._ID = this.navParams.data.record._id;
-      this.department = this.navParams.data.record.department;
-      this.email = this.navParams.data.record.email;
-      this.name = this.navParams.data.record.name;
-      this.id = this.navParams.data.record.id;
-      this.number = this.navParams.data.record.number;
-      this.keys = this.navParams.data.record.keys;
+      this.department = this.navParams.data.record.request_department;
+      this.email = this.navParams.data.record.request_email;
+      this.name = this.navParams.data.record.request_name;
+      this.id = this.navParams.data.record.request_919;
+      this.number = this.navParams.data.record.request_number;
+      this.keys = this.navParams.data.record.request_keys;
       this.pageTitle = "Update";
     }
     else {
@@ -73,21 +73,21 @@ export class AddRequestPage {
       keys : any = this.form.controls['keys'].value,
       headers :any = new HttpHeaders({"Content-Type":"application/json"}),
       options : any = { department  : department, email : email, name : name, id : id, number : number, keys : keys},
-      url : any = this._HOST + "api/home";
+      url : any = this._HOST + "api/";
 
     if (this.navParams.get("record"))
     {
-      this._HTTP.put(url + '/requests:' + this._ID, options, headers).subscribe(
+      this._HTTP.put(url + 'requests/' + this._ID, options, headers).subscribe(
         (data : any) =>{
           this.clearForm();
-          this.displayNotification(name + 'was successfully updated');
+          this.displayNotification(name + ' was successfully updated');
         },
       (error : any) =>{
           console.dir(error);
     });
     }
     else {
-      this._HTTP.post(url, options, headers).subscribe((data: any) => {
+      this._HTTP.post(url + 'home', options, headers).subscribe((data: any) => {
         console.log("Got data", data);
         this.clearForm();
         this.displayNotification(name + ' your key request was successfully submitted');
