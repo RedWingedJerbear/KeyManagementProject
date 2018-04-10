@@ -77,7 +77,14 @@ export class AddRequestPage {
 
     if (this.navParams.get("record"))
     {
-
+      this._HTTP.put(url + '/requests:' + this._ID, options, headers).subscribe(
+        (data : any) =>{
+          this.clearForm();
+          this.displayNotification(name + 'was successfully updated');
+        },
+      (error : any) =>{
+          console.dir(error);
+    });
     }
     else {
       this._HTTP.post(url, options, headers).subscribe((data: any) => {
